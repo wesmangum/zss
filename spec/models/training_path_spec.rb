@@ -25,7 +25,7 @@ RSpec.describe TrainingPath do
         expect(training_path.errors).to be_nil
       end
       it "should save the new record" do
-        expect(TrainingPath.count).to == 1
+        expect(TrainingPath.count).to eql 1
       end
     end
 
@@ -37,7 +37,7 @@ RSpec.describe TrainingPath do
         expect(training_path.errors).to include("name must be less than 30 characters")
       end
       it "shouldn't save the new record" do
-        expect(TrainingPath.count).to == 0
+        expect(TrainingPath.count).to eql 0
       end
     end
 
@@ -48,7 +48,7 @@ RSpec.describe TrainingPath do
         expect(training_path.errors).to include("Name cannot be blank")
       end
       it "shouldn't save the new record" do
-        expect(TrainingPath.count).to == 0
+        expect(TrainingPath.count).to eql 0
       end
     end
 
@@ -59,7 +59,7 @@ RSpec.describe TrainingPath do
         expect(training_path.errors).to include("Name must include letters")
       end
       it "shouldn't save the new record" do
-        expect(TrainingPath.count).to == 0
+        expect(TrainingPath.count).to eql 0
       end
     end
 
@@ -77,7 +77,7 @@ RSpec.describe TrainingPath do
       end
 
       it "shouldn't save the new record" do
-        expect(TrainingPath.count).to == 1
+        expect(TrainingPath.count).to eql 1
       end
     end
   end
