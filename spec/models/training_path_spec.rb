@@ -27,6 +27,11 @@ RSpec.describe TrainingPath do
       it "should save the new record" do
         expect(TrainingPath.count).to eql 1
       end
+      it "should have saved the values in that record" do
+        actual = Environment.database.execute("SELECT name FROM training_paths")
+        expected = [["Knife Skills"]]
+        expect(actual).to eql expected
+      end
     end
 
     context "really long strings" do

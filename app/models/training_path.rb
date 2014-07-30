@@ -26,7 +26,8 @@ class TrainingPath
 
   def save!
     valid?
-    # save to DB here
+    # save to DB here:
+    # Environment.database.execute("YOUR SQL HERE")
   end
 
   def valid?
