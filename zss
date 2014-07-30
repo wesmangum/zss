@@ -1,6 +1,6 @@
 #!/usr/bin/env ruby
 
-zombie =<<EOS
+zombie = %q{
 NUGGGGGH MUST EAT BRAINS
                            \
                                 .....
@@ -22,6 +22,6 @@ NUGGGGGH MUST EAT BRAINS
                            ____\_\__\_\
                          /`   /`     o\
                          |___ |_______|.. .
-EOS
+}
 
 puts zombie

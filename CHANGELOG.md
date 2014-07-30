@@ -1,5 +1,9 @@
 # Changelog
 
+## July 30, commit 3
+
+  * Commit of shame.  We forgot to smoke test :(
+
 ## July 30, commit 2
 
   * `touch zss`
