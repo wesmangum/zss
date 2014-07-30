@@ -1,5 +1,12 @@
 # Changelog
 
+## July 30, commit 2
+
+  * `touch zss`
+  * `chmod +x zss`
+  * Add shebang to zss
+  * Prints Zombie
+
 ## July 30, commit 1
 
   * Copied in Rakefile from the cal project
