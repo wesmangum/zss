@@ -1,5 +1,12 @@
 # Changelog
 
+## July 30, commit 4
+
+  * Integration specs for the training paths menu, which compelled us to write
+  * Integration specs for creating a training path
+
+Note: The training paths are all expected to fail in this commit.
+
 ## July 30, commit 3
 
   * Commit of shame.  We forgot to smoke test :(
