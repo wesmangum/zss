@@ -7,8 +7,16 @@ class TrainingPath
   end
 
   def self.count
-    0
+    Environment.database.execute("SELECT count(id) FROM training_paths")[0][0]
   end
+  # SQLITE returns:
+  #
+  # SELECT count(*) FROM training_paths;
+  # [ [ 0 ] ]
+  #
+  # SELECT * FROM training_paths;
+  # [ [1, "Foo"],
+  #   [2, "Bar"] ]
 
   def self.create(options)
     training_path = TrainingPath.new(options)

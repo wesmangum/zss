@@ -15,8 +15,12 @@
 #
 # See http://rubydoc.info/gems/rspec-core/RSpec/Core/Configuration
 Dir["./app/**/*.rb"].each { |f| require f }
+Dir["./lib/**/*.rb"].each { |f| require f }
 
 RSpec.configure do |config|
+  config.before(:each) do
+    Environment.database.execute("DELETE FROM training_paths")
+  end
 # The settings below are suggested to provide a good initial experience
 # with RSpec, but feel free to customize to your heart's content.
 =begin

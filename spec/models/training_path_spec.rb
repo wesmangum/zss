@@ -4,12 +4,12 @@ RSpec.describe TrainingPath do
       expect(TrainingPath.count).to eql 0
     end
     it "returns the right number if there are records" do
-      database.execute("INSERT INTO training_paths(name) VALUES('Foo')")
+      Environment.database.execute("INSERT INTO training_paths(name) VALUES('Foo')")
         # Expected table state:
         # | name |
         # -------
         # | Foo  |
-      database.execute("INSERT INTO training_paths(name) VALUES('Bar')")
+      Environment.database.execute("INSERT INTO training_paths(name) VALUES('Bar')")
         # Expected table state:
         # | name |
         # -------
