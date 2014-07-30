@@ -6,6 +6,10 @@ class TrainingPath
     @name = options[:name]
   end
 
+  def self.count
+    0
+  end
+
   def self.create(options)
     training_path = TrainingPath.new(options)
     training_path.save!

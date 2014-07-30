@@ -1,4 +1,23 @@
 RSpec.describe TrainingPath do
+  context ".count" do
+    it "returns 0 if there are no records" do
+      expect(TrainingPath.count).to eql 0
+    end
+    it "returns the right number if there are records" do
+      database.execute("INSERT INTO training_paths(name) VALUES('Foo')")
+        # Expected table state:
+        # | name |
+        # -------
+        # | Foo  |
+      database.execute("INSERT INTO training_paths(name) VALUES('Bar')")
+        # Expected table state:
+        # | name |
+        # -------
+        # | Foo  |
+        # | Bar  |
+      expect(TrainingPath.count).to eql 2
+    end
+  end
   context ".create" do
     context "with valid data" do
       let!(:training_path){ TrainingPath.create(name: "Knife Skills") }
