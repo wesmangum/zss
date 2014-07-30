@@ -1,5 +1,15 @@
 # Changelog
 
+## July 30, commit 5
+
+  * `mkdir -p app/models` to create the models dir.
+  * Created `spec/models/training_path_spec.rb`
+  * Moved most validation related spects into the TrainingPath unit specs
+  * Created the barest skeleton of the TrainingPath class
+  * Added a line to `spec_helper.rb` to require all classes in the `app` directory
+
+Note: We need to discuss `let`s in more detail.
+
 ## July 30, commit 4
 
   * Integration specs for the training paths menu, which compelled us to write
