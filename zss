@@ -1,5 +1,8 @@
 #!/usr/bin/env ruby
 
+Dir["./app/**/*.rb"].each { |f| require f }
+Dir["./lib/**/*.rb"].each { |f| require f }
+
 zombie = %q{
 NUGGGGGH MUST EAT BRAINS
                            \
@@ -25,3 +28,12 @@ NUGGGGGH MUST EAT BRAINS
 }
 
 puts zombie
+command = gets
+puts "What training path do you want to add?"
+name = (gets || "").chomp
+training_path = TrainingPath.create(name: name)
+if training_path.new_record?
+  puts training_path.errors
+else
+  puts "#{name} has been added to the list of training paths"
+end

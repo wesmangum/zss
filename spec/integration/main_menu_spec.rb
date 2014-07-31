@@ -1,7 +1,7 @@
 RSpec.describe "ZSS Main Menu" do
   context "Prints a menu" do
     it "shows a zombie" do
-      actual = `./zss`
+      actual = run_zss_with_input()
       expected = %q{
 NUGGGGGH MUST EAT BRAINS
                            \
@@ -33,7 +33,7 @@ NUGGGGGH MUST EAT BRAINS
       TrainingPath.create(name: "Running")
       TrainingPath.create(name: "Hand-to-Hand Combat")
       TrainingPath.create(name: "Sneaking")
-      actual = `./zss`
+      actual = run_zss_with_input()
       expected = "1. Running" +
                  "2. Hand-to-Hand Combat" +
                  "3. Sneaking"

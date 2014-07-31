@@ -43,6 +43,10 @@ class TrainingPath
     end
   end
 
+  def new_record?
+    @id.nil?
+  end
+
   def valid?
     validate
     @errors.nil?
