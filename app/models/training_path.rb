@@ -25,9 +25,9 @@ class TrainingPath
   end
 
   def save!
-    valid?
-    # save to DB here:
-    # Environment.database.execute("YOUR SQL HERE")
+    if valid?
+      Environment.database.execute("INSERT INTO training_paths (name) VALUES ('#{@name}')")
+    end
   end
 
   def valid?
@@ -44,8 +44,15 @@ class TrainingPath
       @errors = "name must be less than 30 characters"
     elsif @name.match(/^\d+$/)
       @errors = "Name must include letters"
+    elsif duplicate_name?
+      @errors = "A path with that name already exists"
     else
       @errors = nil
     end
+  end
+
+  def duplicate_name?
+    records_with_name = Environment.database.execute("SELECT * FROM training_paths WHERE name = '#{@name}'")
+    records_with_name.count > 0
   end
 end
