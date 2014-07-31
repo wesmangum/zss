@@ -21,6 +21,10 @@ require_relative 'helpers'
 RSpec.configure do |config|
   config.include Helpers
 
+  config.before(:suite) do
+    Environment.environment = "test"
+  end
+
   config.before(:each) do
     Environment.database.execute("DELETE FROM training_paths")
   end
