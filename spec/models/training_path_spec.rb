@@ -18,6 +18,7 @@ RSpec.describe TrainingPath do
       expect(TrainingPath.count).to eql 2
     end
   end
+
   context ".create" do
     context "with valid data" do
       let!(:training_path){ TrainingPath.create(name: "Knife Skills") }
@@ -30,6 +31,11 @@ RSpec.describe TrainingPath do
       it "should have saved the values in that record" do
         actual = Environment.database.execute("SELECT name FROM training_paths")
         expected = [["Knife Skills"]]
+        expect(actual).to eql expected
+      end
+      it "should record the id from the database" do
+        actual = training_path.id
+        expected = Environment.database.execute("SELECT id FROM training_paths")[0][0]
         expect(actual).to eql expected
       end
     end
@@ -83,6 +89,39 @@ RSpec.describe TrainingPath do
 
       it "shouldn't save the new record" do
         expect(TrainingPath.count).to eql 1
+      end
+    end
+  end
+  context ".last" do
+    context "if there are no records" do
+      it "should return nil" do
+        expect(TrainingPath.last).to be_nil
+      end
+    end
+    context "if there is one record" do
+      let!(:training_path){ TrainingPath.create(name: "Blunt Weapon Skills") }
+
+      it "should return a record, populated with the correct name" do
+        expect(TrainingPath.last.name).to eql "Blunt Weapon Skills"
+      end
+      it "should return a record, populated with the correct id" do
+        expect(TrainingPath.last.id).to eql training_path.id
+      end
+    end
+    context "if there are several records" do
+      let(:training_path1){ TrainingPath.create(name: "Foo") }
+      let(:training_path2){ TrainingPath.create(name: "Bar") }
+
+      before do
+        training_path1
+        training_path2
+      end
+
+      it "should return the record that was created last, populated with name" do
+        expect(TrainingPath.last.name).to eql "Bar"
+      end
+      it "should return the record that was created last, populated with id" do
+        expect(TrainingPath.last.id).to eql training_path2.id
       end
     end
   end

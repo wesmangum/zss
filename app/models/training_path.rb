@@ -1,9 +1,10 @@
 class TrainingPath
 
-  attr_reader :errors
+  attr_reader :errors, :id, :name
 
   def initialize(options)
     @name = options[:name]
+    @id = options[:id]
   end
 
   def self.count
@@ -24,9 +25,21 @@ class TrainingPath
     training_path
   end
 
+  def self.last
+    row = Environment.database.execute("SELECT * FROM training_paths").last
+    if row.nil?
+      nil
+    else
+      #=> [1, "Foo"]
+      values = { id: row[0], name: row[1] }
+      TrainingPath.new(values)
+    end
+  end
+
   def save!
     if valid?
       Environment.database.execute("INSERT INTO training_paths (name) VALUES ('#{@name}')")
+      @id = Environment.database.last_insert_row_id
     end
   end
 
