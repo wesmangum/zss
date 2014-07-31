@@ -1,10 +1,20 @@
 class TrainingPath
+  include Comparable
 
   attr_reader :errors, :id, :name
 
   def initialize(options)
+    @errors = nil
     @name = options[:name]
     @id = options[:id]
+  end
+
+  def self.all
+    results = []
+    Environment.database.execute("SELECT * FROM training_paths").each do |row|
+      results << TrainingPath.new(id: row[0], name: row[1])
+    end
+    results
   end
 
   def self.count
@@ -50,6 +60,10 @@ class TrainingPath
   def valid?
     validate
     @errors.nil?
+  end
+
+  def <=>(other)
+    self.id <=> other.id
   end
 
   private

@@ -29,14 +29,13 @@ NUGGGGGH MUST EAT BRAINS
     end
 
     it "should print the list of training paths" do
-      pending "The ability to add training paths via. the CLI"
       TrainingPath.create(name: "Running")
       TrainingPath.create(name: "Hand-to-Hand Combat")
       TrainingPath.create(name: "Sneaking")
       actual = run_zss_with_input()
-      expected = "1. Running" +
-                 "2. Hand-to-Hand Combat" +
-                 "3. Sneaking"
+      expected = "1. Running\n" +
+                 "2. Hand-to-Hand Combat\n" +
+                 "3. Sneaking\n"
       expect(actual).to include(expected)
     end
 

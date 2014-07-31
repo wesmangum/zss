@@ -27,7 +27,14 @@ NUGGGGGH MUST EAT BRAINS
                          |___ |_______|.. .
 }
 
+def print_menu
+  TrainingPath.all.each_with_index do |training_path, index|
+    puts "#{index + 1}. #{training_path.name}"
+  end
+end
+
 puts zombie
+print_menu
 command = gets
 puts "What training path do you want to add?"
 name = (gets || "").chomp
