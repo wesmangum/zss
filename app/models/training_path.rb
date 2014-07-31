@@ -26,7 +26,7 @@ class TrainingPath
   end
 
   def self.last
-    row = Environment.database.execute("SELECT * FROM training_paths").last
+    row = Environment.database.execute("SELECT * FROM training_paths ORDER BY id DESC LIMIT 1").last
     if row.nil?
       nil
     else
