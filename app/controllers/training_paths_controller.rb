@@ -18,6 +18,7 @@ class TrainingPathsController
     training_paths.each_with_index do |training_path, index|
       puts "#{index + 1}. #{training_path.name}"
     end
+    Router.navigate_training_paths(self)
   end
 
   def view(path_number)
@@ -27,8 +28,7 @@ class TrainingPathsController
       training_path.skills.each_with_index do |skill, index|
         puts "#{index + 1}. #{skill.name}"
       end
-      clean_gets
-      add_skill_to_training_path(training_path)
+      Router.navigate_skills(training_path)
     else
       puts "Sorry, training path #{path_number} doesn't exist."
     end
