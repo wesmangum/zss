@@ -33,19 +33,7 @@ NUGGGGGH MUST EAT BRAINS
                          |___ |_______|.. .
 }
 
-def add_skill_to_training_path(training_path)
-  puts "What skill do you want to add?"
-  name = clean_gets
-  skill = Skill.create(name: name, training_path: training_path)
-  if skill.new_record?
-    puts skill.errors
-  else
-    puts "#{name} has been added to the #{training_path.name} training path"
-  end
-end
-
 puts zombie
 
 training_paths_controller = TrainingPathsController.new()
-
 training_paths_controller.list

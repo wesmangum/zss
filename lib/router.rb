@@ -1,7 +1,8 @@
 class Router
   def self.navigate_skills(training_path)
     clean_gets
-    add_skill_to_training_path(training_path)
+    skills_controller = SkillsController.new()
+    skills_controller.add(training_path)
   end
 
   def self.navigate_training_paths(training_paths_controller)
