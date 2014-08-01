@@ -30,6 +30,11 @@ NUGGGGGH MUST EAT BRAINS
 }
 
 def print_menu
+  puts <<EOS
+==============
+TRAINING PATHS
+==============
+EOS
   TrainingPath.all.each_with_index do |training_path, index|
     puts "#{index + 1}. #{training_path.name}"
   end
@@ -46,8 +51,20 @@ def add_training_path
   end
 end
 
+def view_training_path
+  puts "We're headed down a path!"
+end
+
 puts zombie
 print_menu
 
-command = gets
-add_training_path
+command = gets.chomp
+
+case command
+when "add"
+  add_training_path
+when /\d+/
+  view_training_path
+else
+  puts "I don't know the '#{command}' command."
+end
