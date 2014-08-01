@@ -29,13 +29,13 @@ NUGGGGGH MUST EAT BRAINS
                          |___ |_______|.. .
 }
 
-def print_menu
+def print_menu(training_paths)
   puts <<EOS
 ==============
 TRAINING PATHS
 ==============
 EOS
-  TrainingPath.all.each_with_index do |training_path, index|
+  training_paths.each_with_index do |training_path, index|
     puts "#{index + 1}. #{training_path.name}"
   end
 end
@@ -51,12 +51,22 @@ def add_training_path
   end
 end
 
-def view_training_path
-  puts "We're headed down a path!"
+def view_training_path(training_paths, path_number)
+  training_path = training_paths[path_number - 1]
+  if training_path
+    puts "We're headed down the path to #{training_path.name}!"
+    training_path.skills.each_with_index do |skill, index|
+      puts "#{index + 1}. #{skill.name}"
+    end
+  else
+    puts "Sorry, training path #{path_number} doesn't exist."
+  end
 end
 
+training_paths = TrainingPath.all
+
 puts zombie
-print_menu
+print_menu(training_paths)
 
 command = gets.chomp
 
@@ -64,7 +74,7 @@ case command
 when "add"
   add_training_path
 when /\d+/
-  view_training_path
+  view_training_path(training_paths, command.to_i)
 else
   puts "I don't know the '#{command}' command."
 end
