@@ -79,7 +79,7 @@ RSpec.describe Skill do
         expect(Skill.last.id).to eq skill2.id
       end
       it "should return the record that was created last, populated with training_path_id" do
-        expect(Skill.last.id).to eq training_path_id
+        expect(Skill.last.training_path_id).to eq training_path.id
       end
     end
   end
@@ -88,21 +88,21 @@ RSpec.describe Skill do
     context "the exact same object" do
       it "is true" do
         a = Skill.create(name: "Baz", training_path: training_path)
-        expect(a).to eq a
+        expect(a).to be == a
       end
     end
     context "the same object, as retrieved by the db" do
       it "is true" do
         a = Skill.create(name: "Grille", training_path: training_path)
         b = Skill.last
-        expect(a).to eq b
+        expect(b).to be == a
       end
     end
     context "non-identical objects" do
       it "is false" do
         a = Skill.create(name: "Foo", training_path: training_path)
         b = Skill.create(name: "Bar", training_path: training_path)
-        expect(a).not_to eq b
+        expect(a).not_to be == b
       end
     end
   end
