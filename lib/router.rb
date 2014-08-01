@@ -1,8 +1,9 @@
 class Router
-  def self.navigate_skills_menu(training_path)
+  def self.navigate_skills_menu(skills_controller)
     clean_gets
-    skills_controller = SkillsController.new()
-    skills_controller.add(training_path)
+    # The navigate_skills_menu interpretes all input as "add",
+    # thus it always calls the `add` action at this point.
+    skills_controller.add
   end
 
   def self.navigate_training_paths_menu(training_paths_controller)
