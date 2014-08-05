@@ -18,9 +18,26 @@ class SkillsController
     puts "=============="
     puts "#{@origin_training_path.name.upcase} SKILLS"
     puts "=============="
-    @origin_training_path.skills.each_with_index do |skill, index|
+    skills.each_with_index do |skill, index|
       puts "#{index + 1}. #{skill.name}"
     end
     Router.navigate_skills_menu(self)
+  end
+
+  def view(path_number)
+    skill = skills[path_number - 1]
+    if skill
+      puts "=============="
+      puts "#{@origin_training_path.name}: #{skill.name}"
+      puts skill.description
+    else
+      puts "Sorry, skill #{path_number} doesn't exist."
+    end
+  end
+
+  private
+
+  def skills
+    @skills ||= @origin_training_path.skills
   end
 end

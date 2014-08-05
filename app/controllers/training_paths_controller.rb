@@ -32,6 +32,8 @@ class TrainingPathsController
     end
   end
 
+  private
+
   def training_paths
     @training_paths ||= TrainingPath.all
   end
