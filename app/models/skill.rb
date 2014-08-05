@@ -1,4 +1,4 @@
-class Skill
+class Skill < ActiveRecord::Base
   include Comparable
   attr_reader :description, :errors, :id, :name
 

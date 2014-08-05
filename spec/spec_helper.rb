@@ -14,8 +14,7 @@
 # users commonly want.
 #
 # See http://rubydoc.info/gems/rspec-core/RSpec/Core/Configuration
-Dir["./app/**/*.rb"].each { |f| require f }
-Dir["./lib/**/*.rb"].each { |f| require f }
+require_relative '../lib/environment'
 require_relative 'helpers'
 
 RSpec.configure do |config|
