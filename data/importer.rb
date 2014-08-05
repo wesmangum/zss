@@ -1,3 +1,4 @@
+# Run from project root via. `ruby data/importer.rb`
 require 'csv'
 require_relative '../app/models/skill'
 require_relative '../app/models/training_path'
