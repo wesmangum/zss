@@ -15,15 +15,12 @@
 #
 # See http://rubydoc.info/gems/rspec-core/RSpec/Core/Configuration
 require_relative '../lib/environment'
+Environment.environment = "test"
+
 require_relative 'helpers'
-require 'shoulda/matchers'
 
 RSpec.configure do |config|
   config.include Helpers
-
-  config.before(:suite) do
-    Environment.environment = "test"
-  end
 
   config.before(:each) do
     Skill.destroy_all
