@@ -11,11 +11,12 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140806150800) do
+ActiveRecord::Schema.define(version: 20140806151600) do
 
   create_table "skills", force: true do |t|
     t.string  "name"
     t.integer "training_path_id"
+    t.text    "description"
   end
 
   create_table "training_paths", force: true do |t|
