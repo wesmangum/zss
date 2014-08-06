@@ -5,7 +5,7 @@ class TrainingPathsController
     name = clean_gets
     training_path = TrainingPath.create(name: name)
     if training_path.new_record?
-      puts training_path.errors
+      puts training_path.errors.full_messages
     else
       puts "#{name} has been added to the list of training paths"
     end

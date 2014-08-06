@@ -39,7 +39,8 @@ RSpec.describe TrainingPath do
     context "with valid data" do
       let!(:training_path){ TrainingPath.create(name: "Knife Skills") }
       it "should not have any errors" do
-        expect(training_path.errors).to be_nil
+        expect(training_path.errors).to be_empty
+        # Typically we would use: `expect(training_path).to be_valid`
       end
       it "should save the new record" do
         expect(TrainingPath.count).to eq 1
@@ -61,7 +62,8 @@ RSpec.describe TrainingPath do
       let!(:training_path){ TrainingPath.create(name: long_string) }
 
       it "should have an appropriate error message" do
-        expect(training_path.errors).to include("name must be less than 30 characters")
+        expect(training_path.errors.full_messages_for(:name)
+              ).to include("Name must be less than 30 characters")
       end
       it "shouldn't save the new record" do
         expect(TrainingPath.count).to eq 0
@@ -72,7 +74,8 @@ RSpec.describe TrainingPath do
       let!(:training_path){ TrainingPath.create(name: "") }
 
       it "should have an appropriate error message" do
-        expect(training_path.errors).to include("Name cannot be blank")
+        expect(training_path.errors.full_messages_for(:name)
+              ).to include("Name can't be blank")
       end
       it "shouldn't save the new record" do
         expect(TrainingPath.count).to eq 0
@@ -83,7 +86,8 @@ RSpec.describe TrainingPath do
       let!(:training_path){ TrainingPath.create(name: "12") }
 
       it "should have an appropriate error message" do
-        expect(training_path.errors).to include("Name must include letters")
+        expect(training_path.errors.full_messages_for(:name)
+              ).to include("Name must include letters")
       end
       it "shouldn't save the new record" do
         expect(TrainingPath.count).to eq 0
@@ -100,7 +104,8 @@ RSpec.describe TrainingPath do
       end
 
       it "should have an appropriate error message" do
-        expect(training_path2.errors).to include("A path with that name already exists")
+        expect(training_path2.errors.full_messages_for(:name)
+              ).to include("Name already exists")
       end
 
       it "shouldn't save the new record" do

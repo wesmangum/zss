@@ -17,7 +17,7 @@ RSpec.describe "Adding training paths" do
     let!(:output){ run_zss_with_input("add", long_string) }
 
     it "prints the error message for the type of invalid input" do
-      expect(output).to include("name must be less than 30 characters")
+      expect(output).to include("Name must be less than 30 characters")
     end
     it "shouldn't save the new record" do
       expect(TrainingPath.count).to eql 0

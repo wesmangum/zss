@@ -22,7 +22,7 @@ RSpec.describe "Adding skills to a training path" do
     let!(:output){ run_zss_with_input("1", "add", "") }
 
     it "prints an error message" do
-      expect(output).to include("name cannot be blank")
+      expect(output).to include("Name can't be blank")
     end
 
     it "doesn't create a skill" do

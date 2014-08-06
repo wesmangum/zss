@@ -8,7 +8,7 @@ class SkillsController
     name = clean_gets
     skill = Skill.create(name: name, training_path: @origin_training_path)
     if skill.new_record?
-      puts skill.errors
+      puts skill.errors.full_messages
     else
       puts "#{name} has been added to the #{@origin_training_path.name} training path"
     end

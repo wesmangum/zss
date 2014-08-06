@@ -1,6 +1,7 @@
 require 'sqlite3'
 require 'active_record'
 Dir["./app/**/*.rb"].each { |f| require f }
+I18n.enforce_available_locales = false
 
 class Environment
 
