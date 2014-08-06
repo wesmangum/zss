@@ -21,8 +21,8 @@ RSpec.describe Skill do
       expect(Skill.count).to eq 0
     end
     it "returns the right number if there are records" do
-      Environment.database.execute("INSERT INTO skills(name, training_path_id) VALUES('Foo', 3)")
-      Environment.database.execute("INSERT INTO skills(name, training_path_id) VALUES('Bar', 3)")
+      Skill.create!(name: "Foo", training_path_id: training_path.id)
+      Skill.create!(name: "Bar", training_path_id: training_path.id)
       expect(Skill.count).to eq 2
     end
   end
@@ -33,9 +33,8 @@ RSpec.describe Skill do
         expect(skill.errors).to be_empty
       end
       it "should save the record accurately" do
-        actual = Environment.database.execute("SELECT name, description, training_path_id FROM skills")
-        expected = [[ "Shuffling", "Like running with your feet on the ground", training_path.id ]]
-        expect(actual).to eq expected
+        actual = Skill.last
+        expect(actual).to eq skill
       end
     end
     context "without a training path" do

@@ -25,8 +25,8 @@ RSpec.configure do |config|
   end
 
   config.before(:each) do
-    Environment.database.execute("DELETE FROM skills")
-    Environment.database.execute("DELETE FROM training_paths")
+    Skill.destroy_all
+    TrainingPath.destroy_all
   end
 # The settings below are suggested to provide a good initial experience
 # with RSpec, but feel free to customize to your heart's content.

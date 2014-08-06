@@ -20,17 +20,8 @@ RSpec.describe TrainingPath do
       expect(TrainingPath.count).to eq 0
     end
     it "returns the right number if there are records" do
-      Environment.database.execute("INSERT INTO training_paths(name) VALUES('Foo')")
-        # Expected table state:
-        # | name |
-        # -------
-        # | Foo  |
-      Environment.database.execute("INSERT INTO training_paths(name) VALUES('Bar')")
-        # Expected table state:
-        # | name |
-        # -------
-        # | Foo  |
-        # | Bar  |
+      TrainingPath.create(name: "Foo")
+      TrainingPath.create(name: "Bar")
       expect(TrainingPath.count).to eq 2
     end
   end
@@ -46,14 +37,8 @@ RSpec.describe TrainingPath do
         expect(TrainingPath.count).to eq 1
       end
       it "should have saved the values in that record" do
-        actual = Environment.database.execute("SELECT name FROM training_paths")
-        expected = [["Knife Skills"]]
-        expect(actual).to eq expected
-      end
-      it "should record the id from the database" do
-        actual = training_path.id
-        expected = Environment.database.execute("SELECT id FROM training_paths")[0][0]
-        expect(actual).to eq expected
+        actual = TrainingPath.last
+        expect(actual).to eq training_path
       end
     end
 
