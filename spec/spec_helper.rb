@@ -16,6 +16,7 @@
 # See http://rubydoc.info/gems/rspec-core/RSpec/Core/Configuration
 require_relative '../lib/environment'
 require_relative 'helpers'
+require 'shoulda/matchers'
 
 RSpec.configure do |config|
   config.include Helpers
