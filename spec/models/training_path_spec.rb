@@ -1,32 +1,5 @@
 RSpec.describe TrainingPath do
-  context ".all" do
-    context "with no training paths in the database" do
-      it "should return an empty array" do
-        expect(TrainingPath.all).to eq []
-      end
-    end
-    context "with several training paths in the database" do
-      let!(:foo){ TrainingPath.create(name: "Foo") }
-      let!(:bar){ TrainingPath.create(name: "bar") }
-      let!(:grille){ TrainingPath.create(name: "grille") }
-
-      it "should return all of the training paths" do
-        expect(TrainingPath.all).to eq [foo, bar, grille]
-      end
-    end
-  end
-  context ".count" do
-    it "returns 0 if there are no records" do
-      expect(TrainingPath.count).to eq 0
-    end
-    it "returns the right number if there are records" do
-      TrainingPath.create(name: "Foo")
-      TrainingPath.create(name: "Bar")
-      expect(TrainingPath.count).to eq 2
-    end
-  end
-
-  context ".create" do
+  context "validations" do
     context "with valid data" do
       let!(:training_path){ TrainingPath.create(name: "Knife Skills") }
       it "should not have any errors" do
@@ -95,61 +68,6 @@ RSpec.describe TrainingPath do
 
       it "shouldn't save the new record" do
         expect(TrainingPath.count).to eq 1
-      end
-    end
-  end
-  context ".last" do
-    context "if there are no records" do
-      it "should return nil" do
-        expect(TrainingPath.last).to be_nil
-      end
-    end
-    context "if there is one record" do
-      let!(:training_path){ TrainingPath.create(name: "Blunt Weapon Skills") }
-
-      it "should return a record, populated with the correct name" do
-        expect(TrainingPath.last.name).to eq "Blunt Weapon Skills"
-      end
-      it "should return a record, populated with the correct id" do
-        expect(TrainingPath.last.id).to eq training_path.id
-      end
-    end
-    context "if there are several records" do
-      let(:training_path1){ TrainingPath.create(name: "Foo") }
-      let(:training_path2){ TrainingPath.create(name: "Bar") }
-
-      before do
-        training_path1
-        training_path2
-      end
-
-      it "should return the record that was created last, populated with name" do
-        expect(TrainingPath.last.name).to eq "Bar"
-      end
-      it "should return the record that was created last, populated with id" do
-        expect(TrainingPath.last.id).to eq training_path2.id
-      end
-    end
-  end
-  context "equality" do
-    context "the exact same object" do
-      it "is true" do
-        a = TrainingPath.create(name: "Baz")
-        expect(a).to eq a
-      end
-    end
-    context "the same object, as retrieved by the db" do
-      it "is true" do
-        a = TrainingPath.create(name: "Grille")
-        b = TrainingPath.last
-        expect(a).to eq b
-      end
-    end
-    context "non-identical objects" do
-      it "is false" do
-        a = TrainingPath.create(name: "Foo")
-        b = TrainingPath.create(name: "Bar")
-        expect(a).not_to eq b
       end
     end
   end
