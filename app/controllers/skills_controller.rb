@@ -30,6 +30,7 @@ class SkillsController
       puts "=============="
       puts "#{@origin_training_path.name}: #{skill.name}"
       puts skill.description
+      AchievementsController.new().record(skill)
     else
       puts "Sorry, skill #{path_number} doesn't exist."
     end
