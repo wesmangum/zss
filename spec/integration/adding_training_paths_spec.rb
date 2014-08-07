@@ -1,4 +1,4 @@
-RSpec.describe "Adding training paths" do
+RSpec.describe "Adding training paths", :integration do
   context "valid input" do
     let!(:output){ run_zss_with_input("add", "Sneaking") }
 

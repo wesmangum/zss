@@ -1,4 +1,4 @@
-RSpec.describe "Viewing the skill menu" do
+RSpec.describe "Viewing the skill menu", :integration do
   let!(:path1){ TrainingPath.create(name: "Running") }
   let!(:path2){ TrainingPath.create(name: "Hand-to-Hand Combat") }
 

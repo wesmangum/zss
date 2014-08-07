@@ -1,4 +1,4 @@
-RSpec.describe "ZSS Main Menu" do
+RSpec.describe "ZSS Main Menu", :integration do
   context "Prints a menu" do
     it "shows a zombie" do
       actual = run_zss_with_input()

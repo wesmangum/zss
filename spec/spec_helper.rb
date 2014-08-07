@@ -22,10 +22,25 @@ require_relative 'helpers'
 RSpec.configure do |config|
   config.include Helpers
 
-  config.before(:each) do
-    Skill.destroy_all
-    TrainingPath.destroy_all
+  config.before(:suite) do
+    DatabaseCleaner.strategy = :transaction
+    DatabaseCleaner.clean_with(:truncation)
   end
+
+  config.before(:context, :integration) do |example|
+    DatabaseCleaner.strategy = :truncation
+  end
+
+  config.after(:context, :integration) do |example|
+    DatabaseCleaner.strategy = :transaction
+  end
+
+  config.around(:each) do |example|
+    DatabaseCleaner.cleaning do
+      example.run
+    end
+  end
+
 # The settings below are suggested to provide a good initial experience
 # with RSpec, but feel free to customize to your heart's content.
 =begin

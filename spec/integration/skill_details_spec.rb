@@ -1,4 +1,4 @@
-RSpec.describe "Viewing the skill details" do
+RSpec.describe "Viewing the skill details", :integration do
   let!(:training_path){ TrainingPath.create(name: "Hand-to-Hand Combat") }
 
   context "a skill that is in the list" do
@@ -33,4 +33,3 @@ RSpec.describe "Viewing the skill details" do
     end
   end
 end
-

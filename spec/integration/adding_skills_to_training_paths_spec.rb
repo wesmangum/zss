@@ -1,11 +1,11 @@
-RSpec.describe "Adding skills to a training path" do
+RSpec.describe "Adding skills to a training path", :integration do
   context "valid input" do
     let!(:training_path1){ TrainingPath.create(name: "Weapon Skills") }
     let!(:training_path2){ TrainingPath.create(name: "Running") }
     let!(:output){ run_zss_with_input("2", "add", "Jogging") }
 
     it "prints a success message" do
-     expect(output).to include("Jogging has been added to the Running training path")
+      expect(output).to include("Jogging has been added to the Running training path")
     end
 
     it "saves the correct training path to the record" do

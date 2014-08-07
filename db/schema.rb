@@ -22,5 +22,10 @@ ActiveRecord::Schema.define(version: 20140806151600) do
   create_table "training_paths", force: true do |t|
     t.string "name"
   end
+  create_table "achievements", force: true do |t|
+    t.string "mastered"
+    t.string "date"
+    t.string "skill_id"
+  end
 
 end
